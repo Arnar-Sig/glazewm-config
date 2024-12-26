@@ -75,34 +75,41 @@ workspaces:
   - name: "8"
   - name: "9"
 window_rules:
-  - commands: ["move --workspace 1"]
+  - commands: ["move --workspace 1", "focus --workspace 1"]
     match:
       - window_process: { equals: "firefox" }
 
-  - commands: ["move --workspace 2"]
+  - commands: ["move --workspace 2", "focus --workspace 2"]
     match:
       - window_process: { equals: "explorer" }
 
-  - commands: ["move --workspace 3"]
+  - commands: ["move --workspace 3", "focus --workspace 3"]
     match:
       # - window_process: {equals: "firefox.exe"}
       - window_process: { equals: "brave" }
       - window_title: { regex: ".*Youtube Music" }
 
-  - commands: ["move --workspace 4"]
+  - commands: ["move --workspace 4", "focus --workspace 4"]
     match:
       - window_process: {equals: "powershell"}
       - window_process: {equals: "WindowsTerminal"}
 
-  - commands: ["move --workspace 5"]
+  - commands: ["move --workspace 5", "focus --workspace 5"]
     match:
       - window_process: {equals: "Code"}
     
-  - commands: ["move --workspace 6"]
+  - commands: ["move --workspace 6", "focus --workspace 6"]
     match:
       - window_process: {equals: "Discord"}
 
-  - commands: ["move --workspace 9"]
+  - commands: ["move --workspace 7", "focus --workspace 7"]
+    match:
+      - window_process: {equals: "steam"}
+      - window_process: {equals: "steamwebhelper"}
+      - window_process: {equals: "Battle.net"}
+      - window_process: {regex: ".*Battle.net"}
+
+  - commands: ["move --workspace 9", "focus --workspace 9"]
     match:
        - window_process: {equals: "vlc"}
 
