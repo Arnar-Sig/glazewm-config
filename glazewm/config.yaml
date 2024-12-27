@@ -45,7 +45,7 @@ window_effects:
 window_behavior:
   # New windows are created in this state whenever possible.
   # Allowed values: 'tiling', 'floating'.
-  initial_state: "tiling"
+  initial_state: "floating"
   # Sets the default options for when a new window is created. This also
 
   # changes the defaults for when the state change commands, like
@@ -66,52 +66,50 @@ window_behavior:
       shown_on_top: false
 workspaces:
   - name: "1"
+    display_name: 'Browser'
+    keep_alive: false 
   - name: "2"
+    display_name: 'Files'
+    keep_alive: false
   - name: "3"
+    display_name: 'Music'
+    keep_alive: false
   - name: "4"
+    display_name: 'Mix'
+    keep_alive: false
   - name: "5"
+    display_name: 'Code'
+    keep_alive: false
   - name: "6"
   - name: "7"
   - name: "8"
   - name: "9"
 window_rules:
+  # Workspace 1
   - commands: ["move --workspace 1", "focus --workspace 1"]
     match:
       - window_process: { equals: "firefox" }
-
+ 
+  # Workspace 2
   - commands: ["move --workspace 2", "focus --workspace 2"]
     match:
       - window_process: { equals: "explorer" }
 
+  # Workspace 3
   - commands: ["move --workspace 3", "focus --workspace 3"]
     match:
-      # - window_process: {equals: "firefox.exe"}
       - window_process: { equals: "brave" }
-      - window_title: { regex: ".*Youtube Music" }
 
-  - commands: ["move --workspace 4", "focus --workspace 4"]
-    match:
-      - window_process: {equals: "powershell"}
-      - window_process: {equals: "WindowsTerminal"}
-
+  # Workspace 5
   - commands: ["move --workspace 5", "focus --workspace 5"]
     match:
-      - window_process: {equals: "Code"}
-    
-  - commands: ["move --workspace 6", "focus --workspace 6"]
-    match:
-      - window_process: {equals: "Discord"}
+      - window_process: { equals: "Code" }
+      - window_process: { equals: "WindowsTerminal" }
+      - window_process: { equals: "powershell" }
 
-  - commands: ["move --workspace 7", "focus --workspace 7"]
+  # Workspace 4 (Everything else that is not specified)
+  - commands: ["move --workspace 4", "focus --workspace 4"]
     match:
-      - window_process: {equals: "steam"}
-      - window_process: {equals: "steamwebhelper"}
-      - window_process: {equals: "Battle.net"}
-      - window_process: {regex: ".*Battle.net"}
-
-  - commands: ["move --workspace 9", "focus --workspace 9"]
-    match:
-       - window_process: {equals: "vlc"}
 
   - commands: ["ignore"]
     match:
@@ -125,6 +123,7 @@ window_rules:
         # Ignore rules for various 3rd-party apps.
       - window_process: { equals: "Lively" }
         window_class: { regex: "HwndWrapper*" }
+
 binding_modes:
   # When enabled, the focused window can be resized via arrow keys or HJKL.
   - name: "resize"
