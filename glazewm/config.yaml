@@ -66,11 +66,11 @@ window_behavior:
       shown_on_top: false
 workspaces:
   - name: "1"
-    display_name: 'Browser'
-    keep_alive: false 
+    display_name: 'Main'
+    keep_alive: true 
   - name: "2"
-    display_name: 'Files'
-    keep_alive: false
+    display_name: 'Browser'
+    keep_alive: true
   - name: "3"
     display_name: 'Music'
     keep_alive: false
@@ -85,20 +85,30 @@ workspaces:
   - name: "8"
   - name: "9"
 window_rules:
+
   # Workspace 1
   - commands: ["move --workspace 1", "focus --workspace 1"]
     match:
-      - window_process: { equals: "firefox" }
- 
+      - window_process: { regex: ".*"}
+
   # Workspace 2
   - commands: ["move --workspace 2", "focus --workspace 2"]
     match:
-      - window_process: { equals: "explorer" }
+      - window_process: { equals: "firefox" }
 
   # Workspace 3
   - commands: ["move --workspace 3", "focus --workspace 3"]
     match:
       - window_process: { equals: "brave" }
+
+  # Workspace 4
+  - commands: ["move --workspace 4", "focus --workspace 4"]
+    match:
+      - window_process: { equals: "steam" }
+      - window_process: { equals: "steamwebhelper" } # Steam
+      - window_process: { equals: "Battle" } # Battle.net
+      - window_process: { equals: "Agent" } # Battle.net
+      - window_process: { equals: "Discord" }
 
   # Workspace 5
   - commands: ["move --workspace 5", "focus --workspace 5"]
@@ -106,10 +116,6 @@ window_rules:
       - window_process: { equals: "Code" }
       - window_process: { equals: "WindowsTerminal" }
       - window_process: { equals: "powershell" }
-
-  # Workspace 4 (Everything else that is not specified)
-  - commands: ["move --workspace 4", "focus --workspace 4"]
-    match:
 
   - commands: ["ignore"]
     match:
@@ -120,7 +126,7 @@ window_rules:
 
         window_class: { regex: "Chrome_WidgetWin_1|MozillaDialogClass" }
       - window_process: { equals: "PowerToys.PowerAccent" }
-        # Ignore rules for various 3rd-party apps.
+      #  Ignore rules for various 3rd-party apps.
       - window_process: { equals: "Lively" }
         window_class: { regex: "HwndWrapper*" }
 
